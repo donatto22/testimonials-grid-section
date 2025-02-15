@@ -21,48 +21,99 @@
 body {
     font-family: "Barlow Semi Condensed", serif;
     font-style: normal;
+    align-content: center;
+    height: 100vh;
+}
+
+h3 {
+    font-weight: 600;
 }
 
 /* Crear la grilla */
 section {
+    width: 80%;
+    margin: 0 auto;
     display: grid;
+    gap: 2em;
     /* Colocando auto varias veces por la cantidad de columnas */
-    grid-template-columns: repeat(4, auto);
-    grid-template-rows: repeat(2, auto);
+    /* grid-template-columns: repeat(4, auto);
+    grid-template-rows: repeat(2, auto); */
+    grid-template-areas:
+        "purple purple gray1 aside"
+        "white gray2 gray2 aside";
 }
 
 article {
-    background-color: beige;
-}
-
-article:nth-child(1),
-article:nth-child(4) {
-    grid-column: 2 span;
+    border-radius: 10px;
+    padding: 2em;
+    box-shadow: 0 30px 100px -30px var(--Black);
 }
 
 article:nth-child(1) {
     background-color: var(--Purple-500);
+    background-image: url(./images/bg-pattern-quotation.svg);
+    background-repeat: no-repeat;
+    background-position-x: 80%;
+    grid-area: purple;
+
+    /* nesting */
+    h3 {
+        color: var(--Purple-50);
+    }
 }
 
 article:nth-child(2) {
     background-color: var(--Grey-500);
+    grid-area: gray1;
+
+    h3 {
+        color: var(--Grey-100);
+    }
 }
 
 article:nth-child(3) {
     background-color: var(--White);
+    grid-area: white;
+
+    h3 {
+        color: var(--Grey-500)
+    }
 }
 
 article:nth-child(4) {
-    background-color: var(--Black);
+    background-color: var(--Dark-blue);
+    grid-area: gray2;
 }
 
 article:nth-child(5) {
-    grid-column: 4;
-    grid-row: 1 / 2 span;
-    background-color: blue;
+    /* grid-column: 4;
+    grid-row: 1 / 2 span; */
+    background-color: var(--White);
+    grid-area: aside;
+
+    h3 {
+        color: var(--Grey-500)
+    }
 }
 
 /* grid-column y grid-row */
 /* cuando uno de estos recibe un único valor lo que estás indicando es su posición */
 /* Pero, si en realidad colocas 2 valores entonces lo que indicas es el espacio que está
 tomando*/
+
+@media (width < 1050px) {
+    section {
+        width: 90%;
+    }
+}
+
+@media (width < 900px) {
+    section {
+        grid-template-areas:
+            "purple"
+            "gray1"
+            "white"
+            "gray2"
+            "aside"
+    }
+}
